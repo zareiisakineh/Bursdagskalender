@@ -1,0 +1,235 @@
+:root {
+  --primary-color: #4a6fa5;
+  --primary-light: #e8f0f9;
+  --secondary-color: #6c5ce7;
+  --accent-color: #fce2cb;
+  --text-color: #2b2d42;
+  --text-light: #8d99ae;
+  --bg-color: #f8f9fa;
+  --card-bg: #ffffff;
+  --border-color: #fffafa;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Segoe UI", Roboto, Arial, sans-serif;
+  line-height: 1.6;
+  color: var(--text-color);
+  background-color: var(--bg-color);
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/*Header og meny*/
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 18px;
+  background: var(--card-bg);
+  border-bottom: 1px solid var(--border-color);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.brand-title {
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--primary-color);
+}
+/*På desktop ønsker vi at menyen alltid skal vises.Derfor har vi: display:flex. Dette betyr: Vis menyen.
+På en stor skjerm ser det slik ut:
+------------------------------------
+Hjem  Print  Studenter  Prosedyrer
+------------------------------------*/
+.nav {
+  display: flex;
+  align-items: center;
+}
+
+.nav ul {
+  list-style: none;
+  display: flex;
+  gap: 12px;
+}
+
+.nav a {
+  padding: 10px;
+  border-radius: 8px;
+  transition: 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 600;
+}
+
+.nav a:hover {
+  background: var(--primary-light);
+}
+
+.nav a[aria-current="page"] {
+  background: var(--primary-color);
+  color: white;
+}
+
+.menu-toggle {
+  display: none;
+  padding: 8px 10px;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  background: white;
+  cursor: pointer;
+}
+
+/* Container og kort*/
+.container {
+  max-width: 1800px;
+  margin: 0 auto;
+  padding: 16px;
+}
+
+.card {
+  background: var(--card-bg);
+  border-radius: 14px;
+  padding: 1rem;
+  margin: 1rem 0;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+/*Trekkspill (arbeidsliste)*/
+.item {
+  margin-bottom: 1rem;
+  border: 1px solid hsl(144, 57%, 91%);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.question {
+  width: 100%;
+  min-height: 70px;
+  padding: 1rem;
+  background: hsl(102, 21%, 91%);
+  border: none;
+  text-align: left;
+  cursor: pointer;
+  font-size: 1.3rem;
+  font-weight: 600;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.question:hover {
+  background: hsl(102, 34%, 77%);
+}
+
+.answer {
+  display: none;
+  background: white;
+  padding: 1rem;
+  font-size: 1.1rem;
+}
+
+.answer.active {
+  display: block;
+}
+
+.answer ul {
+  margin-left: 1.5rem;
+}
+
+.icon {
+  transition: transform 0.3s;
+}
+
+.icon.open {
+  transform: rotate(180deg);
+}
+
+/*Mobilvisning*/
+/*
+En mobil har mye mindre plass. Derfor bruker vi @media (max-width:760px). Dette betyr:
+Hvis skjermen er 760 piksler eller mindre, bruk disse CSS-reglene i stedet.
+Nå endrer CSS utseendet.
+.nav ul{
+    display:none;
+}
+    Nå blir menyen skjult.
+-----------------
+☰
+-----------------
+Legg merke til: JavaScript har fortsatt ikke gjort noe. CSS bestemmer bare at menyen skal være skjult.
+}
+*/
+#menuToggle{
+  background-color: rgb(249, 240, 229);
+  border:1px solid #a0a1a8;
+  padding: 2px 20px;
+  font-size: 2rem;
+}
+@media screen and (max-width: 760px) {
+
+  .menu-toggle {
+    display: block;
+  }
+/*
+Brukeren klikker -> JavaScript kjører -> class="open" legges til -> CSS ser den nye klassen -> display:flex ->
+Menyen vises*/
+  .nav ul {
+    display: none;
+    position: absolute;
+    right: 10px;
+    top: 60px;
+    width: 200px;
+    background: rgb(218, 217, 217);
+    border-radius: 12px;
+    flex-direction: column;
+    padding: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,.15);
+  }
+
+  .nav ul.open {
+    display: flex;
+  }
+
+  .container {
+    padding: 8px;
+  }
+
+  .card {
+    padding: 0.75rem;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  .question {
+    min-height: auto;
+    padding: 14px;
+    font-size: 1rem;
+  }
+
+  .answer {
+    font-size: 1rem;
+    padding: 14px;
+  }
+
+  .answer li {
+    margin-bottom: 8px;
+  }
+
+  .brand-title {
+    font-size: 16px;
+  }
+}
